@@ -17,7 +17,7 @@ class TeamServiceImpl: TeamService {
     }
 
     override fun getTeamByName(name: String): TeamEntity {
-        return repository.findTeamEntityByName(name)
+        return repository.findTeamEntityByName(name).get()
     }
 
     override fun saveTeam(teamEntity: TeamEntity): TeamEntity {
