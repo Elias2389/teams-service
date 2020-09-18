@@ -35,8 +35,9 @@ class TeamController(@Autowired val service: TeamService) {
      * Save team
      */
     @PostMapping
-    fun saveTeam(@RequestBody teamEntity: TeamEntity): ResponseEntity<TeamEntity> {
-        return ResponseEntity(service.saveTeam(teamEntity), HttpStatus.CREATED)
+    fun saveTeam(@RequestBody teamEntity: TeamEntity): ResponseEntity<TeamResponse> {
+        val team: TeamEntity = service.saveTeam(teamEntity)
+        return ResponseEntity(team.toTeamResponse(), HttpStatus.CREATED)
     }
 
     /**
@@ -44,7 +45,7 @@ class TeamController(@Autowired val service: TeamService) {
      */
     @PutMapping
     fun updateTeam(@RequestBody teamEntity: TeamEntity): ResponseEntity<TeamResponse> {
-        val team: TeamEntity = service.getTeamByName(teamEntity.name)
+        val team: TeamEntity = service.saveTeam(teamEntity)
         return ResponseEntity(team.toTeamResponse(), HttpStatus.OK)
     }
 }
