@@ -11,7 +11,6 @@ class TeamServiceImpl: TeamService {
     @Autowired
     lateinit var repository: TeamRepository
 
-
     override fun getTeams(): List<TeamEntity> {
         return repository.findAll()
     }

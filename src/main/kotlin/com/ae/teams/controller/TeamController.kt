@@ -43,7 +43,8 @@ class TeamController(@Autowired val service: TeamService) {
      * Update team
      */
     @PutMapping
-    fun updateTeam(@RequestBody teamEntity: TeamEntity): ResponseEntity<TeamEntity> {
-        return ResponseEntity(service.updateTeam(teamEntity), HttpStatus.OK)
+    fun updateTeam(@RequestBody teamEntity: TeamEntity): ResponseEntity<TeamResponse> {
+        val team: TeamEntity = service.getTeamByName(teamEntity.name)
+        return ResponseEntity(team.toTeamResponse(), HttpStatus.OK)
     }
 }
